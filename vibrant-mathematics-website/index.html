@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vibrant Mathematics International School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B2A4A;
+    --ink-soft:#4A5875;
+    --cream:#FFFBF2;
+    --cream-2:#FFF4DC;
+    --marigold:#FFB627;
+    --marigold-deep:#F29B0C;
+    --coral:#FF6355;
+    --leaf:#2E9E52;
+    --sky:#E9F3FB;
+    --violet:#7B61E0;
+    --white:#ffffff;
+    --shadow: 0 12px 30px rgba(27,42,74,0.10);
+    --radius: 22px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter', sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    line-height:1.55;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{font-family:'Fredoka', sans-serif; font-weight:600; letter-spacing:-0.01em;}
+  .num{font-family:'Space Grotesk', sans-serif;}
+  a{text-decoration:none; color:inherit;}
+  ul{list-style:none;}
+  img,svg{display:block; max-width:100%;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 28px;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:13px;
+    letter-spacing:0.08em; text-transform:uppercase; color:var(--coral);
+    margin-bottom:14px;
+  }
+  .eyebrow::before{content:''; width:8px; height:8px; border-radius:2px; background:var(--coral); transform:rotate(45deg);}
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding:15px 28px; border-radius:100px; font-weight:600; font-size:15.5px;
+    font-family:'Inter',sans-serif; border:2px solid transparent; cursor:pointer;
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{background:var(--coral); color:var(--white); box-shadow:0 8px 20px rgba(255,99,85,0.35);}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 12px 26px rgba(255,99,85,0.45);}
+  .btn-outline{border-color:var(--ink); color:var(--ink);}
+  .btn-outline:hover{background:var(--ink); color:var(--white);}
+  .btn-light{background:var(--white); color:var(--ink);}
+  .btn-light:hover{transform:translateY(-2px); box-shadow:0 10px 22px rgba(0,0,0,0.15);}
+
+  /* NAV */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(255,251,242,0.9); backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(27,42,74,0.08);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px; max-width:1180px; margin:0 auto;
+  }
+  .logo{display:flex; align-items:center; gap:12px; font-family:'Fredoka'; font-weight:600; font-size:19px;}
+  .logo-mark{width:42px; height:42px; flex-shrink:0;}
+  .logo-text span{display:block; font-family:'Space Grotesk'; font-weight:500; font-size:11px; letter-spacing:0.06em; color:var(--ink-soft); text-transform:uppercase;}
+  .nav-links{display:flex; gap:34px; align-items:center;}
+  .nav-links a{font-weight:600; font-size:15px; color:var(--ink-soft); transition:color .2s;}
+  .nav-links a:hover{color:var(--coral);}
+  .nav-cta{display:flex; gap:12px; align-items:center;}
+  .menu-toggle{display:none; background:none; border:none; cursor:pointer; padding:6px;}
+  .menu-toggle span{display:block; width:26px; height:3px; background:var(--ink); margin:5px 0; border-radius:3px;}
+
+  /* HERO */
+  .hero{position:relative; padding:76px 0 40px; overflow:hidden;}
+  .hero-grid{display:grid; grid-template-columns:1.05fr 0.95fr; gap:50px; align-items:center;}
+  .hero h1{font-size:clamp(34px,4.6vw,58px); line-height:1.08; margin-bottom:22px;}
+  .hero h1 .hl{color:var(--coral); position:relative; white-space:nowrap;}
+  .hero p.lead{font-size:18.5px; color:var(--ink-soft); max-width:520px; margin-bottom:32px;}
+  .hero-ctas{display:flex; gap:16px; flex-wrap:wrap; margin-bottom:38px;}
+  .hero-facts{display:flex; gap:34px; flex-wrap:wrap;}
+  .hero-facts div b{display:block; font-family:'Space Grotesk'; font-size:28px; color:var(--ink);}
+  .hero-facts div span{font-size:13.5px; color:var(--ink-soft);}
+  .hero-art{position:relative; height:460px;}
+  .float-shape{position:absolute; animation:bob 6s ease-in-out infinite;}
+  @keyframes bob{0%,100%{transform:translateY(0px) rotate(0deg);} 50%{transform:translateY(-14px) rotate(6deg);}}
+  @media (prefers-reduced-motion: reduce){ .float-shape{animation:none;} }
+
+  section{padding:96px 0;}
+  .section-head{max-width:640px; margin:0 auto 56px; text-align:center;}
+  .section-head h2{font-size:clamp(28px,3.4vw,40px); margin-bottom:14px;}
+  .section-head p{color:var(--ink-soft); font-size:17px;}
+  .section-head.left{margin:0 0 48px; text-align:left;}
+
+  /* ABOUT */
+  .about{background:var(--white);}
+  .about-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:60px; align-items:center;}
+  .about-copy p{color:var(--ink-soft); font-size:16.5px; margin-bottom:16px;}
+  .about-pillars{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:26px;}
+  .pillar{background:var(--sky); border-radius:16px; padding:16px 18px;}
+  .pillar b{display:block; font-family:'Fredoka'; font-size:15.5px; margin-bottom:4px;}
+  .pillar span{font-size:13.5px; color:var(--ink-soft);}
+
+  /* FEATURES */
+  .features{background:var(--cream);}
+  .feat-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .feat-card{
+    background:var(--white); border-radius:var(--radius); padding:32px 28px;
+    box-shadow:var(--shadow); transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .feat-card:hover{transform:translateY(-6px); box-shadow:0 20px 40px rgba(27,42,74,0.14);}
+  .feat-icon{width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center; margin-bottom:18px;}
+  .feat-card h3{font-size:19px; margin-bottom:9px;}
+  .feat-card p{font-size:14.8px; color:var(--ink-soft);}
+
+  /* GRADE LADDER (signature) */
+  .ladder-wrap{background:var(--ink); color:var(--white); position:relative; overflow:hidden;}
+  .ladder-wrap .section-head p{color:#B9C3DA;}
+  .ladder-wrap .section-head h2{color:var(--white);}
+  .ladder{display:flex; align-items:flex-end; gap:10px; overflow-x:auto; padding:20px 4px 10px; margin-top:20px;}
+  .rung{
+    flex:1 1 0; min-width:98px; text-align:center; position:relative; padding-top:26px;
+  }
+  .rung-shape{width:54px; height:54px; margin:0 auto 14px; display:flex; align-items:center; justify-content:center;}
+  .rung .grade{font-family:'Space Grotesk'; font-weight:600; font-size:14px;}
+  .rung .age{font-size:12px; color:#93A0BE; margin-top:2px;}
+  .rung::before{
+    content:''; position:absolute; top:12px; left:-5%; width:110%; height:2px;
+    background:repeating-linear-gradient(90deg, #4A5875 0, #4A5875 6px, transparent 6px, transparent 12px);
+  }
+  .rung:first-child::before{left:50%; width:60%;}
+  .rung:last-child::before{width:60%;}
+
+  /* FACILITIES */
+  .facilities{background:var(--white);}
+  .fac-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
+  .fac-card{
+    border:1.5px solid #EDE6D6; border-radius:18px; padding:26px 20px; text-align:left;
+    transition:border-color .2s, background .2s;
+  }
+  .fac-card:hover{border-color:var(--marigold); background:var(--cream-2);}
+  .fac-card .fac-icon{width:44px; height:44px; margin-bottom:14px;}
+  .fac-card h4{font-size:15.5px; margin-bottom:6px;}
+  .fac-card p{font-size:13.5px; color:var(--ink-soft);}
+
+  /* GALLERY (illustrated) */
+  .gallery{background:var(--sky);}
+  .gal-grid{display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:170px; gap:16px;}
+  .gal-item{border-radius:20px; overflow:hidden; position:relative; box-shadow:var(--shadow);}
+  .gal-item svg, .gal-item img{width:100%; height:100%; object-fit:cover;}
+  .gal-item.big{grid-column:span 2; grid-row:span 2;}
+  .gal-cap{position:absolute; bottom:0; left:0; right:0; padding:14px 16px; background:linear-gradient(0deg, rgba(27,42,74,0.75), transparent); color:#fff; font-size:13.5px; font-weight:600;}
+
+  /* ADMISSIONS */
+  .admissions{background:var(--white);}
+  .adm-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:18px;}
+  .adm-step{text-align:center; padding:8px;}
+  .adm-num{
+    width:46px; height:46px; border-radius:50%; background:var(--coral); color:#fff;
+    display:flex; align-items:center; justify-content:center; margin:0 auto 16px;
+    font-family:'Space Grotesk'; font-weight:700; font-size:17px;
+  }
+  .adm-step h4{font-size:15.5px; margin-bottom:6px;}
+  .adm-step p{font-size:13px; color:var(--ink-soft);}
+  .adm-cta{
+    margin-top:52px; background:var(--marigold); border-radius:28px; padding:44px 50px;
+    display:flex; justify-content:space-between; align-items:center; gap:24px; flex-wrap:wrap;
+  }
+  .adm-cta h3{font-size:26px; max-width:480px;}
+  .adm-cta p{color:#5B4300; margin-top:6px;}
+
+  /* CONTACT */
+  .contact{background:var(--ink); color:#fff;}
+  .contact .section-head h2{color:#fff;}
+  .contact .section-head p{color:#B9C3DA;}
+  .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:50px;}
+  .info-list li{display:flex; gap:16px; margin-bottom:26px; align-items:flex-start;}
+  .info-ic{width:42px; height:42px; border-radius:12px; background:rgba(255,182,39,0.15); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+  .info-list b{display:block; font-family:'Fredoka'; font-size:15.5px; margin-bottom:3px;}
+  .info-list span{font-size:14px; color:#B9C3DA;}
+  .info-list .placeholder{color:var(--marigold); font-style:italic;}
+  form{background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.14); border-radius:20px; padding:30px;}
+  .form-row{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:14px;}
+  input,select,textarea{
+    width:100%; padding:13px 15px; border-radius:12px; border:1px solid rgba(255,255,255,0.2);
+    background:rgba(255,255,255,0.06); color:#fff; font-family:'Inter'; font-size:14.5px;
+  }
+  input::placeholder, textarea::placeholder{color:#8B96AF;}
+  textarea{resize:vertical; min-height:90px;}
+  form .btn-primary{width:100%; margin-top:6px;}
+  .map-note{margin-top:16px; font-size:12.5px; color:#8B96AF;}
+
+  .quick-enq{
+    position:fixed; right:22px; bottom:22px; z-index:200;
+    display:flex; align-items:center; gap:10px;
+    background:var(--coral); color:#fff; padding:15px 22px; border-radius:100px;
+    box-shadow:0 10px 26px rgba(255,99,85,0.45); font-weight:600; font-size:15px;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .quick-enq:hover{transform:translateY(-3px) scale(1.03); box-shadow:0 14px 32px rgba(255,99,85,0.55);}
+  .quick-enq svg{flex-shrink:0;}
+  @media (max-width:700px){
+    .quick-enq{right:16px; bottom:16px; padding:13px 18px; font-size:14px;}
+    .quick-enq span.full{display:none;}
+  }
+
+  footer{background:#141F38; color:#8B96AF; padding:40px 0 26px; font-size:13.5px;}
+  .foot-grid{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;}
+  .foot-links{display:flex; gap:22px;}
+  .foot-links a:hover{color:#fff;}
+
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  @media (max-width: 980px){
+    .hero-grid, .about-grid, .contact-grid{grid-template-columns:1fr;}
+    .hero-art{height:320px; order:-1;}
+    .feat-grid{grid-template-columns:repeat(2,1fr);}
+    .fac-grid{grid-template-columns:repeat(2,1fr);}
+    .gal-grid{grid-template-columns:repeat(2,1fr); grid-auto-rows:150px;}
+    .gal-item.big{grid-column:span 2; grid-row:span 1;}
+    .adm-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width: 700px){
+    .nav-links, .nav-cta .btn-outline{display:none;}
+    .menu-toggle{display:block;}
+    .form-row{grid-template-columns:1fr;}
+    .adm-cta{flex-direction:column; align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#top" class="logo">
+      <svg class="logo-mark" viewBox="0 0 48 48" fill="none">
+        <circle cx="14" cy="30" r="9" fill="#FFB627"/>
+        <rect x="22" y="10" width="17" height="17" rx="5" fill="#FF6355" transform="rotate(8 22 10)"/>
+        <path d="M24 40 L34 24 L44 40 Z" fill="#2E9E52"/>
+      </svg>
+      <span class="logo-text">Vibrant Mathematics<span>International School</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#features">Why Us</a></li>
+      <li><a href="#grades">Grades</a></li>
+      <li><a href="#facilities">Facilities</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-outline">Contact</a>
+      <a href="#admissions" class="btn btn-primary">Apply Now</a>
+    </div>
+    <button class="menu-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('mobile-open')">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Admissions Open · Pre-Primary to Class 8</div>
+        <h1>Where curious minds<br>learn to <span class="hl">count, create<br>&amp; discover.</span></h1>
+        <p class="lead">Vibrant Mathematics International School blends a joyful, play-based start with a strong academic foundation — building confident, curious learners from Pre-KG through Class 8.</p>
+        <div class="hero-ctas">
+          <a href="#admissions" class="btn btn-primary">Start Admission →</a>
+          <a href="#facilities" class="btn btn-outline">Explore Campus</a>
+        </div>
+        <div class="hero-facts">
+          <div><b class="num">20+</b><span>Years of Learning</span></div>
+          <div><b class="num">1:15</b><span>Teacher–Student Ratio</span></div>
+          <div><b class="num">9</b><span>Grade Levels</span></div>
+          <div><b class="num">100%</b><span>CBSE-aligned Curriculum</span></div>
+        </div>
+      </div>
+
+      <div class="hero-art">
+        <svg viewBox="0 0 480 460" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="240" cy="420" rx="190" ry="24" fill="#1B2A4A" opacity="0.06"/>
+          <!-- desk -->
+          <rect x="90" y="300" width="300" height="18" rx="6" fill="#F2C879"/>
+          <rect x="110" y="318" width="16" height="70" fill="#E0AE5E"/>
+          <rect x="354" y="318" width="16" height="70" fill="#E0AE5E"/>
+          <!-- big number blocks -->
+          <rect x="130" y="205" width="80" height="80" rx="18" fill="#FF6355"/>
+          <text x="170" y="262" font-family="Space Grotesk" font-size="52" font-weight="700" fill="#fff" text-anchor="middle">7</text>
+          <rect x="220" y="175" width="80" height="80" rx="18" fill="#7B61E0"/>
+          <text x="260" y="232" font-family="Space Grotesk" font-size="52" font-weight="700" fill="#fff" text-anchor="middle">+</text>
+          <rect x="300" y="215" width="80" height="80" rx="18" fill="#2E9E52"/>
+          <text x="340" y="272" font-family="Space Grotesk" font-size="52" font-weight="700" fill="#fff" text-anchor="middle">3</text>
+          <!-- child 1 -->
+          <g>
+            <circle cx="150" cy="150" r="26" fill="#F7C59F"/>
+            <path d="M124 150 a26 26 0 0 1 52 0" fill="#3B2A20"/>
+            <rect x="128" y="172" width="44" height="55" rx="16" fill="#FFB627"/>
+          </g>
+          <!-- child 2 -->
+          <g>
+            <circle cx="340" cy="145" r="24" fill="#E7A978"/>
+            <path d="M316 145 a24 24 0 0 1 48 0" fill="#22160F"/>
+            <rect x="318" y="166" width="42" height="52" rx="15" fill="#3FB6C7"/>
+          </g>
+          <!-- floating shapes -->
+          <circle cx="60" cy="90" r="16" fill="#FFB627" opacity="0.9"/>
+          <path d="M400 60 L424 100 L376 100 Z" fill="#FF6355" opacity="0.9"/>
+          <rect x="410" y="150" width="30" height="30" rx="8" fill="#7B61E0" opacity="0.85" transform="rotate(15 425 165)"/>
+          <circle cx="430" cy="260" r="12" fill="#2E9E52"/>
+          <text x="60" y="220" font-family="Space Grotesk" font-size="34" fill="#1B2A4A" opacity="0.18" font-weight="700">×</text>
+          <text x="420" y="330" font-family="Space Grotesk" font-size="34" fill="#1B2A4A" opacity="0.18" font-weight="700">÷</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="wrap about-grid">
+      <div class="reveal">
+        <svg viewBox="0 0 380 420" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="0" width="380" height="420" rx="28" fill="#E9F3FB"/>
+          <rect x="30" y="60" width="320" height="200" rx="16" fill="#fff"/>
+          <rect x="30" y="60" width="320" height="30" rx="16" fill="#1B2A4A"/>
+          <circle cx="50" cy="75" r="5" fill="#FF6355"/>
+          <circle cx="66" cy="75" r="5" fill="#FFB627"/>
+          <circle cx="82" cy="75" r="5" fill="#2E9E52"/>
+          <line x1="55" y1="120" x2="325" y2="120" stroke="#DCE6EE" stroke-width="3"/>
+          <line x1="55" y1="140" x2="290" y2="140" stroke="#DCE6EE" stroke-width="3"/>
+          <line x1="55" y1="160" x2="310" y2="160" stroke="#DCE6EE" stroke-width="3"/>
+          <circle cx="270" cy="200" r="30" fill="#FFB627"/>
+          <rect x="55" y="185" width="150" height="20" rx="10" fill="#F2C879"/>
+          <!-- kids row -->
+          <g>
+            <circle cx="90" cy="330" r="24" fill="#F7C59F"/>
+            <path d="M66 330 a24 24 0 0 1 48 0" fill="#3B2A20"/>
+            <rect x="68" y="350" width="44" height="50" rx="16" fill="#FF6355"/>
+          </g>
+          <g>
+            <circle cx="190" cy="335" r="26" fill="#E7A978"/>
+            <path d="M164 335 a26 26 0 0 1 52 0" fill="#22160F"/>
+            <rect x="166" y="357" width="48" height="52" rx="17" fill="#2E9E52"/>
+          </g>
+          <g>
+            <circle cx="290" cy="330" r="24" fill="#F7C59F"/>
+            <path d="M266 330 a24 24 0 0 1 48 0" fill="#5A3A22"/>
+            <rect x="268" y="350" width="44" height="50" rx="16" fill="#7B61E0"/>
+          </g>
+        </svg>
+      </div>
+      <div class="reveal">
+        <div class="eyebrow">About Our School</div>
+        <h2 style="font-size:clamp(26px,3vw,36px); margin-bottom:18px;">A school built around how children actually learn</h2>
+        <p>Vibrant Mathematics International School was founded on a simple belief: young children learn best when they are curious, moving, and having fun — and that a strong footing in numbers and reasoning opens doors in every subject.</p>
+        <p>From our Pre-Primary wing to Class 8, our classrooms mix hands-on activities, stories, art, and play with a structured academic core, so every child grows in confidence at their own pace.</p>
+        <div class="about-pillars">
+          <div class="pillar"><b>Play-based Pre-Primary</b><span>Nursery, LKG &amp; UKG through games and stories</span></div>
+          <div class="pillar"><b>Activity-led Math</b><span>Concepts taught with blocks, puzzles &amp; real objects</span></div>
+          <div class="pillar"><b>Small Class Sizes</b><span>Individual attention for every child</span></div>
+          <div class="pillar"><b>Safe, Caring Campus</b><span>CCTV, trained staff &amp; secure pickup</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow" style="justify-content:center;">Why Choose Us</div>
+        <h2>Everything a good school should have</h2>
+        <p>The features and facilities that make learning joyful, safe, and effective for every child.</p>
+      </div>
+      <div class="feat-grid">
+        <div class="feat-card reveal">
+          <div class="feat-icon" style="background:#FFEDCB;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 12l8-5 8 5-8 5-8-5z" stroke="#F29B0C" stroke-width="2" stroke-linejoin="round"/><path d="M8 14v4c0 1.5 8 1.5 8 0v-4" stroke="#F29B0C" stroke-width="2"/></svg>
+          </div>
+          <h3>Experienced Faculty</h3>
+          <p>Trained, caring teachers who specialise in early-years and middle-school learning methods.</p>
+        </div>
+        <div class="feat-card reveal">
+          <div class="feat-icon" style="background:#FFDAD6;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="13" rx="2" stroke="#FF6355" stroke-width="2"/><path d="M8 21h8M12 17v4" stroke="#FF6355" stroke-width="2"/></svg>
+          </div>
+          <h3>Smart Classrooms</h3>
+          <p>Interactive digital boards and audio-visual aids that bring lessons to life.</p>
+        </div>
+        <div class="feat-card reveal">
+          <div class="feat-icon" style="background:#DFF3E4;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z" stroke="#2E9E52" stroke-width="2" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Safety First</h3>
+          <p>CCTV-monitored campus, verified staff, and secure entry &amp; pickup procedures.</p>
+        </div>
+        <div class="feat-card reveal">
+          <div class="feat-icon" style="background:#E6E0FA;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#7B61E0" stroke-width="2"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6" stroke="#7B61E0" stroke-width="2"/></svg>
+          </div>
+          <h3>Individual Attention</h3>
+          <p>Low student-teacher ratio so every child is seen, heard, and encouraged.</p>
+        </div>
+        <div class="feat-card reveal">
+          <div class="feat-icon" style="background:#CDEFF6;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M3 12h4l3-8 4 16 3-8h4" stroke="#3FB6C7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Sports &amp; Activities</h3>
+          <p>Daily physical activity, sports coaching, and inter-house competitions.</p>
+        </div>
+        <div class="feat-card reveal">
+          <div class="feat-icon" style="background:#FFEDCB;">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 19V7a2 2 0 012-2h5l2 2h5a2 2 0 012 2v10a2 2 0 01-2 2H6a2 2 0 01-2-2z" stroke="#F29B0C" stroke-width="2"/></svg>
+          </div>
+          <h3>Well-Stocked Library</h3>
+          <p>A colourful reading corner for pre-primary and a full library for grades 1-8.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GRADE LADDER -->
+  <section class="ladder-wrap" id="grades">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow" style="justify-content:center;">Grades Offered</div>
+        <h2>From first steps to strong foundations</h2>
+        <p>Pre-Primary through Class 8, on one connected campus.</p>
+      </div>
+      <div class="ladder reveal">
+        <div class="rung"><div class="rung-shape"><svg width="54" height="54" viewBox="0 0 54 54"><circle cx="27" cy="27" r="27" fill="#FFB627"/></svg></div><div class="grade">Nursery</div><div class="age">Age 3+</div></div>
+        <div class="rung"><div class="rung-shape"><svg width="50" height="50" viewBox="0 0 50 50"><rect width="50" height="50" rx="12" fill="#FF6355"/></svg></div><div class="grade">LKG</div><div class="age">Age 4+</div></div>
+        <div class="rung"><div class="rung-shape"><svg width="52" height="52" viewBox="0 0 52 52"><path d="M26 2 L50 46 L2 46 Z" fill="#2E9E52"/></svg></div><div class="grade">UKG</div><div class="age">Age 5+</div></div>
+        <div class="rung"><div class="rung-shape"><svg width="50" height="50" viewBox="0 0 50 50"><rect width="50" height="50" rx="25" fill="#7B61E0"/></svg></div><div class="grade num">Class 1</div><div class="age">Age 6+</div></div>
+        <div class="rung"><div class="rung-shape"><svg width="50" height="50" viewBox="0 0 50 50"><rect width="50" height="50" rx="10" fill="#3FB6C7" transform="rotate(15 25 25)"/></svg></div><div class="grade num">Class 2</div><div class="age">Age 7+</div></div>
+        <div class="rung"><div class="rung-shape"><svg width="54" height="54" viewBox="0 0 54 54"><circle cx="27" cy="27" r="27" fill="#FFB627"/></svg></div><div class="grade num">Class 3</div><div class="age">Age 8+</div></div>
+        <div class="rung"><div class="rung-shape"><svg width="50" height="50" viewBox="0 0 50 50"><rect width="50" height="50" rx="12" fill="#FF6355"/></svg></div><div class="grade num">Class 4</div><div class="age">Age 9+</div></div>
+        <div class="rung"><div class="rung-shape"><svg width="52" height="52" viewBox="0 0 52 52"><path d="M26 2 L50 46 L2 46 Z" fill="#2E9E52"/></svg></div><div class="grade num">Class 5</div><div class="age">Age 10+</div></div>
+        <div class="rung"><div class="rung-shape"><svg width="50" height="50" viewBox="0 0 50 50"><rect width="50" height="50" rx="25" fill="#7B61E0"/></svg></div><div class="grade num">Class 6</div><div class="age">Age 11+</div></div>
+        <div class="rung"><div class="rung-shape"><svg width="50" height="50" viewBox="0 0 50 50"><rect width="50" height="50" rx="10" fill="#3FB6C7" transform="rotate(15 25 25)"/></svg></div><div class="grade num">Class 7</div><div class="age">Age 12+</div></div>
+        <div class="rung"><div class="rung-shape"><svg width="54" height="54" viewBox="0 0 54 54"><circle cx="27" cy="27" r="27" fill="#FFB627"/></svg></div><div class="grade num">Class 8</div><div class="age">Age 13+</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FACILITIES -->
+  <section class="facilities" id="facilities">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow" style="justify-content:center;">Campus &amp; Facilities</div>
+        <h2>Everything your child needs, on one campus</h2>
+        <p>Purpose-built spaces for learning, play, and everyday wellbeing.</p>
+      </div>
+      <div class="fac-grid">
+        <div class="fac-card reveal"><svg class="fac-icon" viewBox="0 0 24 24" fill="none"><path d="M4 19V7a2 2 0 012-2h5l2 2h5a2 2 0 012 2v10a2 2 0 01-2 2H6a2 2 0 01-2-2z" stroke="#F29B0C" stroke-width="2"/></svg><h4>Library &amp; Reading Room</h4><p>Age-graded books and a cosy story corner for little readers.</p></div>
+        <div class="fac-card reveal"><svg class="fac-icon" viewBox="0 0 24 24" fill="none"><path d="M9 3v18M15 3v18M3 9h18M3 15h18" stroke="#7B61E0" stroke-width="2"/></svg><h4>Math &amp; Science Lab</h4><p>Hands-on kits, manipulatives, and simple experiments.</p></div>
+        <div class="fac-card reveal"><svg class="fac-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="3" stroke="#2E9E52" stroke-width="2"/><path d="M4 21c1-5 5-8 8-8s7 3 8 8" stroke="#2E9E52" stroke-width="2"/></svg><h4>Play Area &amp; Sports Ground</h4><p>Safe, cushioned play zone plus an open ground for sports.</p></div>
+        <div class="fac-card reveal"><svg class="fac-icon" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="13" rx="2" stroke="#FF6355" stroke-width="2"/><path d="M8 21h8M12 17v4" stroke="#FF6355" stroke-width="2"/></svg><h4>Smart Classrooms</h4><p>Digital boards, projectors, and audio-visual learning tools.</p></div>
+        <div class="fac-card reveal"><svg class="fac-icon" viewBox="0 0 24 24" fill="none"><rect x="2" y="9" width="15" height="9" rx="2" stroke="#3FB6C7" stroke-width="2"/><path d="M17 12h3l2 3v3h-5v-6z" stroke="#3FB6C7" stroke-width="2"/><circle cx="7" cy="19" r="1.6" fill="#3FB6C7"/><circle cx="18" cy="19" r="1.6" fill="#3FB6C7"/></svg><h4>Safe Transport</h4><p>GPS-tracked buses with attendants on every route.</p></div>
+        <div class="fac-card reveal"><svg class="fac-icon" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.5-9-9a5 5 0 019-3 5 5 0 019 3c-2 4.5-9 9-9 9z" stroke="#FF6355" stroke-width="2"/></svg><h4>Medical &amp; Wellness Room</h4><p>On-campus nurse, first-aid, and regular health check-ups.</p></div>
+        <div class="fac-card reveal"><svg class="fac-icon" viewBox="0 0 24 24" fill="none"><path d="M4 21h16M8 21V9l4-5 4 5v12M8 13h8" stroke="#F29B0C" stroke-width="2"/></svg><h4>Music, Art &amp; Dance</h4><p>Dedicated studios to nurture every child's creative side.</p></div>
+        <div class="fac-card reveal"><svg class="fac-icon" viewBox="0 0 24 24" fill="none"><path d="M4 8h16M6 8v10a2 2 0 002 2h8a2 2 0 002-2V8M9 8V5a1 1 0 011-1h4a1 1 0 011 1v3" stroke="#2E9E52" stroke-width="2"/></svg><h4>Hygienic Canteen</h4><p>Fresh, nutritious meals and snacks prepared on-site daily.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery" id="gallery">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow" style="justify-content:center;">Campus Life</div>
+        <h2>A glimpse into our classrooms</h2>
+        <p>Illustrative snapshots of everyday learning at Vibrant Mathematics.</p>
+      </div>
+      <div class="gal-grid">
+        <div class="gal-item big reveal">
+          <img src="classroom-alphabet-corner.jpg" alt="Students in the alphabet-themed classroom" loading="lazy">
+          <div class="gal-cap">Our colourful classroom corner</div>
+        </div>
+        <div class="gal-item reveal">
+          <img src="campus-entrance-and-play-area.jpg" alt="School entrance and play area" loading="lazy">
+          <div class="gal-cap">Campus entrance &amp; play area</div>
+        </div>
+        <div class="gal-item reveal">
+          <img src="teacher-with-students.jpg" alt="Teacher with students" loading="lazy">
+          <div class="gal-cap">Our teachers &amp; students</div>
+        </div>
+        <div class="gal-item reveal">
+          <img src="students-in-classroom.jpg" alt="Students in classroom" loading="lazy">
+          <div class="gal-cap">Everyday classroom moments</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADMISSIONS -->
+  <section class="admissions" id="admissions">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow" style="justify-content:center;">Admissions</div>
+        <h2>Simple, transparent admission process</h2>
+        <p>From your first enquiry to your child's first day — here's how it works.</p>
+      </div>
+      <div class="adm-grid">
+        <div class="adm-step reveal"><div class="adm-num">1</div><h4>Enquire</h4><p>Fill the form below or call our admissions desk.</p></div>
+        <div class="adm-step reveal"><div class="adm-num">2</div><h4>Campus Visit</h4><p>Tour the classrooms and meet our teachers.</p></div>
+        <div class="adm-step reveal"><div class="adm-num">3</div><h4>Interaction</h4><p>A friendly, age-appropriate meet with the child.</p></div>
+        <div class="adm-step reveal"><div class="adm-num">4</div><h4>Offer Letter</h4><p>Receive your admission offer and fee structure.</p></div>
+        <div class="adm-step reveal"><div class="adm-num">5</div><h4>Enrol</h4><p>Complete formalities and welcome to school!</p></div>
+      </div>
+      <div class="adm-cta reveal">
+        <div>
+          <h3>Admissions for the new academic year are now open.</h3>
+          <p>Seats are limited across Pre-Primary and Class 1–8.</p>
+        </div>
+        <a href="#contact" class="btn btn-light">Book a Campus Visit →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow" style="justify-content:center;">Get In Touch</div>
+        <h2>We'd love to show you around</h2>
+        <p>Reach out for admissions, campus visits, or any questions.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="reveal">
+          <ul class="info-list">
+            <li>
+              <div class="info-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.5-8-11a8 8 0 0116 0c-1 6.5-8 11-8 11z" stroke="#FFB627" stroke-width="2"/><circle cx="12" cy="10" r="3" stroke="#FFB627" stroke-width="2"/></svg></div>
+              <div><b>Campus Address</b><span>Vibrant Mathematics International School, NH27, Unnao, Uttar Pradesh</span>
+                <div style="margin-top:6px;"><a href="https://www.google.com/maps/search/?api=1&query=Vibrant+Mathematics+International+School+NH27+Unnao+Uttar+Pradesh" target="_blank" rel="noopener" style="color:var(--marigold); font-size:13px; font-weight:600;">Get Directions →</a></div>
+              </div>
+            </li>
+            <li>
+              <div class="info-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 5h4l2 5-2.5 1.5a11 11 0 005 5L14 14l5 2v4a2 2 0 01-2 2C9 22 2 15 2 7a2 2 0 012-2z" stroke="#FFB627" stroke-width="2"/></svg></div>
+              <div><b>Phone</b><span><a href="tel:+918737800900" style="color:inherit;">087378 00900</a></span></div>
+            </li>
+            <li>
+              <div class="info-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="#FFB627" stroke-width="2"/><path d="M3 7l9 6 9-6" stroke="#FFB627" stroke-width="2"/></svg></div>
+              <div><b>Email</b><span><a href="mailto:ap87388674@gmail.com" style="color:inherit;">ap87388674@gmail.com</a></span></div>
+            </li>
+            <li>
+              <div class="info-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#FFB627" stroke-width="2"/><path d="M12 7v5l3 3" stroke="#FFB627" stroke-width="2"/></svg></div>
+              <div><b>Office Hours</b><span>Monday – Saturday, 8:30 AM onwards <span class="placeholder" style="display:block; font-size:12px; margin-top:2px;">[confirm your exact closing time]</span></span></div>
+            </li>
+          </ul>
+          <div style="margin-top:8px; border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,0.15);">
+            <iframe src="https://www.google.com/maps?q=Vibrant+Mathematics+International+School+NH27+Unnao+Uttar+Pradesh&output=embed" width="100%" height="220" style="border:0; display:block;" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="School location map"></iframe>
+          </div>
+          <p class="map-note">Address is set from what you shared. If the map pin looks off once it's live, search your school name on Google Maps, use "Suggest an edit" / claim the listing, and the pin will sharpen up.</p>
+        </div>
+
+        <form id="enquiryForm" onsubmit="return sendEnquiry(event)">
+          <div class="form-row">
+            <input type="text" id="enq-parent" placeholder="Parent's Name" required>
+            <input type="text" id="enq-child" placeholder="Child's Name">
+          </div>
+          <div class="form-row">
+            <input type="tel" id="enq-phone" placeholder="Phone Number" required>
+            <select id="enq-grade" required>
+              <option value="" disabled selected>Grade Applying For</option>
+              <option>Nursery</option><option>LKG</option><option>UKG</option>
+              <option>Class 1</option><option>Class 2</option><option>Class 3</option>
+              <option>Class 4</option><option>Class 5</option><option>Class 6</option>
+              <option>Class 7</option><option>Class 8</option>
+            </select>
+          </div>
+          <input type="email" id="enq-email" placeholder="Email Address" style="margin-bottom:14px;">
+          <textarea id="enq-message" placeholder="Your message or question..."></textarea>
+          <div style="display:flex; gap:12px; margin-top:6px; flex-wrap:wrap;">
+            <button type="submit" class="btn btn-primary" style="flex:1; min-width:170px;">Send via Email</button>
+            <button type="button" onclick="sendEnquiryWhatsApp()" class="btn btn-light" style="flex:1; min-width:170px; background:#25D366; color:#fff;">Send via WhatsApp</button>
+          </div>
+          <p class="confirm" style="display:none; color:#8CE0A6; font-size:13.5px; margin-top:12px;">Opening your email/WhatsApp app now with the enquiry filled in — just hit send there.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-grid">
+    <div class="logo" style="font-size:15.5px;">
+      <svg width="30" height="30" viewBox="0 0 48 48" fill="none">
+        <circle cx="14" cy="30" r="9" fill="#FFB627"/>
+        <rect x="22" y="10" width="17" height="17" rx="5" fill="#FF6355" transform="rotate(8 22 10)"/>
+        <path d="M24 40 L34 24 L44 40 Z" fill="#2E9E52"/>
+      </svg>
+      Vibrant Mathematics International School
+    </div>
+    <div class="foot-links">
+      <a href="#about">About</a>
+      <a href="#facilities">Facilities</a>
+      <a href="#admissions">Admissions</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div>© 2026 Vibrant Mathematics International School. All rights reserved.</div>
+  </div>
+</footer>
+
+<a href="https://wa.me/918737800900?text=Hi%2C%20I%27d%20like%20to%20know%20more%20about%20admissions%20at%20Vibrant%20Mathematics%20International%20School." target="_blank" rel="noopener" class="quick-enq">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 5h4l2 5-2.5 1.5a11 11 0 005 5L14 14l5 2v4a2 2 0 01-2 2C9 22 2 15 2 7a2 2 0 012-2z" fill="#fff"/></svg>
+  <span class="full">Quick Enquiry</span>
+</a>
+
+<script>
+  function sendEnquiry(e){
+    e.preventDefault();
+    const parent = document.getElementById('enq-parent').value;
+    const child = document.getElementById('enq-child').value;
+    const phone = document.getElementById('enq-phone').value;
+    const grade = document.getElementById('enq-grade').value;
+    const email = document.getElementById('enq-email').value;
+    const message = document.getElementById('enq-message').value;
+
+    const subject = `Admission Enquiry - ${grade || 'General'} - ${parent}`;
+    const body =
+`Parent's Name: ${parent}
+Child's Name: ${child}
+Phone Number: ${phone}
+Grade Applying For: ${grade}
+Email: ${email}
+
+Message:
+${message}`;
+
+    window.location.href = `mailto:ap87388674@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    document.querySelector('.confirm').style.display = 'block';
+    return false;
+  }
+
+  function sendEnquiryWhatsApp(){
+    const parent = document.getElementById('enq-parent').value;
+    const child = document.getElementById('enq-child').value;
+    const phone = document.getElementById('enq-phone').value;
+    const grade = document.getElementById('enq-grade').value;
+    const message = document.getElementById('enq-message').value;
+
+    const text =
+`Hi, I'd like to enquire about admission.
+Parent's Name: ${parent}
+Child's Name: ${child}
+Phone Number: ${phone}
+Grade Applying For: ${grade}
+Message: ${message}`;
+
+    window.open(`https://wa.me/918737800900?text=${encodeURIComponent(text)}`, '_blank');
+    document.querySelector('.confirm').style.display = 'block';
+  }
+</script>
+
+<script>
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
